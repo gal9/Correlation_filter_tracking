@@ -5,11 +5,11 @@ import cv2
 
 from src.sequence_utils import VOTSequence
 from src.ncc_tracker_example import NCCTracker, NCCParams
-from src.mean_shift_tracker import MeanShiftParams, MeanShiftTracker
+from src.correlation_filter_tracker import CorelationParams, CorelationTracker
 #from ms_tracker import MeanShiftTracker, MSParams
 
 def run_tracker(dataset_path: str, sequence: str,
-                parameters: MeanShiftParams = MeanShiftParams()) -> Tuple[float, int]:
+                parameters: CorelationParams = CorelationParams()) -> Tuple[float, int]:
     # set the path to directory where you have the sequences
     # dataset_path = './data'
     # sequence = 'bicycle'  # choose the sequence you want to test
@@ -27,7 +27,7 @@ def run_tracker(dataset_path: str, sequence: str,
     n_failures = 0
     # create parameters and tracker objects
     # parameters = MeanShiftParams()
-    tracker = MeanShiftTracker(parameters)
+    tracker = CorelationTracker(parameters)
     #parameters = MSParams()
     #tracker = MeanShiftTracker(parameters)
 
