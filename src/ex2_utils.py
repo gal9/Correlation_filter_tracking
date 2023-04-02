@@ -14,8 +14,8 @@ def generate_responses_1():
 
 def get_patch(img, center, sz):
     # crop coordinates
-    x0 = round(int(center[0] - (sz[0]-1) / 2))
-    y0 = round(int(center[1] - (sz[1]-1) / 2))
+    x0 = round(int(center[0] - (sz[0]) / 2))
+    y0 = round(int(center[1] - (sz[1]) / 2))
     x1 = int(round(x0 + sz[0]))
     y1 = int(round(y0 + sz[1]))
     # padding
@@ -23,6 +23,12 @@ def get_patch(img, center, sz):
     x1_pad = max(x1 - img.shape[1] + 1, 0)
     y0_pad = max(0, -y0)
     y1_pad = max(y1 - img.shape[0] + 1, 0)
+
+    if((y1 < 0 and y0 < 0) or(x1 < 0 and x0 < 0)):
+        if(len(img.shape) > 2):
+            return (np.zeros((sz[1], sz[0], img.shape[2]), dtype=np.uint8), np.zeros((sz[1], sz[0]), dtype=np.uint8))
+        else:    
+            return (np.zeros((sz[1], sz[0]), dtype=np.uint8), np.zeros((sz[1], sz[0]), dtype=np.uint8))
 
     # Crop target
     if len(img.shape) > 2:
