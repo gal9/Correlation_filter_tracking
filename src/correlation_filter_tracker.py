@@ -10,8 +10,8 @@ from src.tracker import Tracker
 class CorelationParams():
     def __init__(self,
                  alpha: float = 0.8,
-                 sigma: float = 1,
-                 lambd: float = 0.9,
+                 sigma: float = 0.9,
+                 lambd: float = 1,
                  enlarge_factor: float = 2):
         self.enlarge_factor = enlarge_factor
         self.alpha = alpha
